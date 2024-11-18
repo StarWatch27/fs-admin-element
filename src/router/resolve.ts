@@ -3,9 +3,11 @@ import _ from "lodash-es";
 import { outsideResource } from "./source/outside";
 import { headerResource } from "./source/header";
 import { frameworkResource } from "./source/framework";
+
 const modules = import.meta.glob("/src/views/**/*.vue");
 
 let index = 0;
+
 function transformOneResource(resource: any, parent: any) {
   let menu: any = null;
   if (resource.meta == null) {
@@ -136,6 +138,7 @@ function flatChildren(list: any, children: any) {
     child.children = null;
   }
 }
+
 function flatSubRouters(routers: any) {
   for (const router of routers) {
     const children: Array<any> = [];

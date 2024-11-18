@@ -1,5 +1,6 @@
 import LayoutOutside from "/src/layout/layout-outside.vue";
 import Error404 from "/src/views/framework/error/404.vue";
+
 const errorPage = [{ path: "/:pathMatch(.*)*", name: "not-found", component: Error404 }];
 export const outsideResource = [
   {

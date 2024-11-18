@@ -1,6 +1,7 @@
 import LayoutFramework from "/src/layout/layout-framework.vue";
 import { crudResources } from "/@/router/source/modules/crud";
 import { sysResources } from "/@/router/source/modules/sys";
+
 export const frameworkResource = [
   {
     title: "框架",

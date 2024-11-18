@@ -15,16 +15,19 @@ import { defineComponent } from "vue";
 import { useUserStore } from "/src/store/modules/user";
 import { ElMessageBox } from "element-plus";
 import { useI18n } from "vue-i18n";
+
 export default defineComponent({
   name: "FsUserInfo",
   setup() {
     const userStore = useUserStore();
     console.log("user", userStore);
     const { t } = useI18n();
+
     async function doLogout() {
       await ElMessageBox.confirm(t("app.login.logoutMessage"), t("app.login.logoutTip"));
       await userStore.logout(true);
     }
+
     return {
       userStore,
       doLogout

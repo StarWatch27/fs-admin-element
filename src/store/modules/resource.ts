@@ -62,7 +62,7 @@ export const useResourceStore = defineStore({
       this.fixedAsideMenus = findMenus(showMenus, (item) => {
         return item?.meta?.fixedAside === true;
       });
-      this.headerMenus = headerMenus;
+      this.headerMenus = headerMenus; // 隐藏顶部菜单的右侧部分（文档、其他demo、源码、等）
       this.setAsideMenu();
     },
     setAsideMenu(topMenu?) {
@@ -97,6 +97,7 @@ export const useResourceStore = defineStore({
           }
         }
       }
+
       const matchedPath = matched[1].path;
       const _side = findFromTree(menuHeader, (menu) => menu.path === matchedPath);
       if (_side?.length > 0) {

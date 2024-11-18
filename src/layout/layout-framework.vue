@@ -76,6 +76,7 @@ import { useResourceStore } from "../store/modules/resource";
 import { usePageStore } from "/@/store/modules/page";
 import FsThemeSet from "/@/layout/components/theme/index.vue";
 import { ElNotification } from "element-plus";
+
 export default {
   name: "LayoutFramework",
   // eslint-disable-next-line vue/no-unused-components
@@ -96,9 +97,11 @@ export default {
     const keepAlive = pageStore.keepAlive;
 
     const asideCollapsed = ref(false);
+
     function asideCollapsedToggle() {
       asideCollapsed.value = !asideCollapsed.value;
     }
+
     onErrorCaptured((e) => {
       console.error("ErrorCaptured:", e);
       // ElNotification.error({ message: e.message });
@@ -122,6 +125,7 @@ export default {
 .fs-framework {
   height: 100%;
   overflow-x: hidden;
+
   .header-logo {
     width: 100%;
     height: 60px;
@@ -135,16 +139,19 @@ export default {
     img {
       height: 80%;
     }
+
     .title {
       margin-left: 5px;
       font-weight: bold;
     }
   }
+
   .fs-framework-content {
     flex: 1;
     border-left: 1px solid #e5e7eb;
     overflow-x: hidden;
   }
+
   .fs-framework-footer {
     border-left: 1px solid #e5e7eb;
     padding: 10px 20px;
@@ -154,10 +161,12 @@ export default {
     display: flex;
     height: auto;
     justify-content: space-between;
+
     > div {
       padding: 5px;
     }
   }
+
   .header-buttons {
     display: flex;
     align-items: center;
@@ -165,6 +174,7 @@ export default {
     & > *:hover {
       color: @primary-color;
     }
+
     & > * {
       display: flex;
       align-items: center;
@@ -180,12 +190,14 @@ export default {
     //  }
     //}
   }
+
   .header-right {
     justify-content: flex-end;
     align-items: center;
     display: flex;
     margin-right: 10px;
     line-height: 60px;
+
     .fs-menu-wrapper {
       .el-menu-item {
         & > * {
@@ -194,15 +206,19 @@ export default {
       }
     }
   }
+
   .fs-header-menu {
     flex: 1;
     overflow: hidden;
   }
+
   .aside-menu {
     flex: 1;
+
     ui {
       height: 100%;
     }
+
     overflow: hidden;
     // overflow-y: auto;
   }
@@ -211,6 +227,7 @@ export default {
     flex: 1;
   }
 }
+
 .fs-framework {
   &.el-container {
     flex-direction: row;
@@ -222,6 +239,7 @@ export default {
     flex-direction: column;
     position: relative;
   }
+
   .el-header {
     flex: 0;
     height: 60px;
@@ -230,8 +248,10 @@ export default {
     display: flex;
     justify-content: flex-start;
     align-items: center;
+
     .el-menu--horizontal {
       border: 0;
+
       .el-sub-menu__title * {
         vertical-align: baseline;
         box-sizing: content-box;
@@ -240,16 +260,19 @@ export default {
         justify-content: center;
         align-items: center;
       }
+
       .el-sub-menu__title {
         display: flex;
         align-items: center;
         box-sizing: border-box;
         line-height: inherit;
+
         .menu-item-title {
           display: flex;
           align-items: center;
         }
       }
+
       .el-sub-menu__icon-arrow {
         margin-left: 5px;
         margin-top: 0;
@@ -259,6 +282,7 @@ export default {
       }
     }
   }
+
   .el-main {
     padding: 0;
     background: #fff;
@@ -266,6 +290,7 @@ export default {
     position: relative;
   }
 }
+
 //element
 .fs-framework {
   .el-aside {
@@ -274,6 +299,7 @@ export default {
     }
   }
 }
+
 .el-menu {
   .fs-iconify {
     margin-right: 5px;

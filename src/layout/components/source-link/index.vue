@@ -8,6 +8,7 @@
 <script lang="ts">
 import { defineComponent, ref, watch } from "vue";
 import { useRoute, useRouter } from "vue-router";
+
 export default defineComponent({
   name: "FsSourceLink",
   setup() {
@@ -23,10 +24,12 @@ export default defineComponent({
       { immediate: true }
     );
     const middle = "/fast-crud/fs-admin-element/blob/main/src/views";
+
     function goSource(prefix) {
       const path = router.currentRoute.value.fullPath;
       window.open(prefix + middle + path + "/index.vue");
     }
+
     return {
       goSource,
       showSourceLink
@@ -40,6 +43,7 @@ export default defineComponent({
   position: fixed;
   right: 3px;
   bottom: 20px;
+
   .fs-source-link {
     text-align: left;
     cursor: pointer;
