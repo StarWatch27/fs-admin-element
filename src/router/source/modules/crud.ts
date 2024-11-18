@@ -24,6 +24,12 @@ export const crudResources = [
             component: "/crud/basis/first/index.vue"
           },
           {
+            title: "myFirstCrud",
+            name: "myFirstCrud",
+            path: "/test/myFirstCrud",
+            component: "/test/myFirstCrud/index.vue"
+          },
+          {
             title: "动态计算",
             name: "BasisCompute",
             path: "/crud/basis/compute",

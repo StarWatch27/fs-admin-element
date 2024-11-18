@@ -10,17 +10,20 @@ import { provide, ref, nextTick } from "vue";
 import { usePageStore } from "/src/store/modules/page";
 import { useResourceStore } from "/src/store/modules/resource";
 import { useSettingStore } from "/@/store/modules/settings";
+
 export default {
   name: "App",
   setup() {
     //刷新页面方法
     const routerEnabled = ref(true);
+
     async function reload() {
       console.log("router reload");
       routerEnabled.value = false;
       await nextTick();
       routerEnabled.value = true;
     }
+
     provide("fn:router.reload", reload);
 
     //其他初始化

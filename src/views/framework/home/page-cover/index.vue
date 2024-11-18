@@ -36,6 +36,7 @@
 import { defineComponent, ref } from "vue";
 import { useUi } from "@fast-crud/fast-crud";
 import helper from "./helper";
+
 export default defineComponent({
   name: "PageCover",
   setup() {
@@ -55,21 +56,25 @@ export default defineComponent({
     width: 40px;
     height: 40px;
   }
+
   display: flex;
   flex-flow: column nowrap;
   justify-content: center;
   align-items: center;
+
   .d2-page-cover__logo {
     img {
       width: 200px;
     }
   }
+
   .d2-page-cover__title {
     margin: 20px;
     font-weight: bold;
     display: -webkit-flex; /* Safari */
     display: flex;
     justify-content: flex-end;
+
     .title-line {
       display: flex;
       align-items: center;
@@ -79,10 +84,12 @@ export default defineComponent({
       font-size: 20px;
     }
   }
+
   .d2-page-cover__sub-title {
     margin: 0px;
     margin-bottom: 10px;
   }
+
   .d2-page-cover__build-time {
     margin: 0px;
     margin-bottom: 0px;
@@ -98,21 +105,26 @@ export default defineComponent({
     padding: 5px;
     margin: auto;
     justify-content: center;
+
     .left {
       height: 100%;
       overflow-y: hidden;
       border: 1px solid #aaa;
     }
+
     .icon {
       padding: 10px;
       font-size: 20px;
     }
+
     .right {
       height: 100%;
+
       img {
         height: 100%;
       }
     }
+
     .d2-highlight {
       font-size: 8px;
     }
@@ -123,10 +135,12 @@ export default defineComponent({
     display: flex;
     justify-content: center;
     align-items: center;
+
     .right {
       display: flex;
       justify-items: center;
       align-items: center;
+
       & > * {
         display: flex;
       }

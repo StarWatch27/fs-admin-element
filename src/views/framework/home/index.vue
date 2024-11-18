@@ -7,6 +7,7 @@
 <script lang="ts">
 import { defineComponent } from "vue";
 import PageCover from "./page-cover/index.vue";
+
 export default defineComponent({
   components: { PageCover },
   setup() {}
