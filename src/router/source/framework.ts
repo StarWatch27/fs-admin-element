@@ -1,6 +1,8 @@
 import LayoutFramework from "/src/layout/layout-framework.vue";
 import { crudResources } from "/@/router/source/modules/crud";
 import { sysResources } from "/@/router/source/modules/sys";
+import { section1 } from "/@/router/source/modules/section1";
+import { section2 } from "/@/router/source/modules/section2";
 
 export const frameworkResource = [
   {
@@ -24,8 +26,10 @@ export const frameworkResource = [
           icon: "ion:home-outline"
         }
       },
+      ...section1,
+      ...section2,
       ...crudResources,
-      ...sysResources
+      ...sysResources // 用户信息管理
     ]
   }
 ];
