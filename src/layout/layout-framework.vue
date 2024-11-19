@@ -41,7 +41,7 @@
           <fs-menu mode="horizontal" :scroll="false" :menus="headerMenus" :ellipsis="false" />
           <fs-locale class="btn" />
           <!--          <fs-theme-set class="btn" />-->
-          <fs-user-info class="btn" />
+          <!--          <fs-user-info class="btn" />-->
         </div>
       </el-header>
       <fs-tabs></fs-tabs>
