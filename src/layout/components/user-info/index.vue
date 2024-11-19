@@ -1,13 +1,13 @@
 <template>
   <el-dropdown>
-    <div class="fs-user-info">Welcome{{ userStore.getUserInfo?.nickName }}</div>
-    <!--    <template #dropdown>-->
-    <!--      <el-dropdown-menu>-->
-    <!--        <el-dropdown-item>-->
-    <!--          <div @click="doLogout">注销登录</div>-->
-    <!--        </el-dropdown-item>-->
-    <!--      </el-dropdown-menu>-->
-    <!--    </template>-->
+    <div class="fs-user-info">你好，{{ userStore.getUserInfo?.nickName }}</div>
+    <template #dropdown>
+      <el-dropdown-menu>
+        <el-dropdown-item>
+          <div @click="doLogout">注销登录</div>
+        </el-dropdown-item>
+      </el-dropdown-menu>
+    </template>
   </el-dropdown>
 </template>
 <script lang="ts">

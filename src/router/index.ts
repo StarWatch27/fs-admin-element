@@ -19,6 +19,7 @@ const router = createRouter({
 router.beforeEach(async (to, from, next) => {
   // 进度条
   NProgress.start();
+  console.log("hjw before matched:", to);
   // 修复三级以上路由页面无法缓存的问题
   if (to.matched && to.matched.length > 2) {
     to.matched.splice(1, to.matched.length - 2);
@@ -64,9 +65,12 @@ router.afterEach((to) => {
 
   //修改左侧边栏
   const matched = to.matched;
+  console.log("hjw to:", to);
+
   if (matched.length > 0) {
     const resourceStore = useResourceStore();
     resourceStore.setAsideMenuByCurrentRoute(matched);
   }
+  /* hjw-end*/
 });
 export default router;
