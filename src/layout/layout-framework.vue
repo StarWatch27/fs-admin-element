@@ -39,7 +39,7 @@
           <!--          >-->
           <!--            Button-->
           <!--          </button>-->
-          <!--          <fs-menu mode="horizontal" :scroll="false" :menus="headerMenus" :ellipsis="false" />-->
+          <fs-menu mode="horizontal" :scroll="false" :menus="headerMenus" :ellipsis="false" />
           <fs-locale class="btn" />
           <!--          <fs-theme-set class="btn" />-->
           <fs-user-info class="btn" />
@@ -81,8 +81,8 @@ import { ElNotification } from "element-plus";
 export default {
   name: "LayoutFramework",
   // eslint-disable-next-line vue/no-unused-components
-  // components: { FsThemeSet, FsMenu, FsLocale, FsSourceLink, FsUserInfo, FsTabs }, // hjw
-  components: { FsThemeSet, FsMenu, FsLocale, FsUserInfo, FsTabs }, // hjw 去掉右下角“本页源码”
+  components: { FsThemeSet, FsMenu, FsLocale, FsSourceLink, FsUserInfo, FsTabs }, // hjw
+  // components: { FsThemeSet, FsMenu, FsLocale, FsUserInfo, FsTabs }, // hjw 去掉右下角“本页源码”
   setup() {
     const resourceStore = useResourceStore();
     const frameworkMenus = computed(() => {
