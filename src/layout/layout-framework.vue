@@ -2,8 +2,9 @@
   <el-container class="fs-framework">
     <el-aside :width="asideCollapsed ? '64px' : '300px'" :trigger="null" collapsible>
       <div class="header-logo">
-        <img src="/images/logo/rect-black.svg" />
-        <span v-if="!asideCollapsed" class="title">FsAdmin</span>
+        <!--        <img src="/images/logo/rect-black.svg" />-->
+        <!--        <span v-if="!asideCollapsed" class="title">FsAdmin2</span>-->
+        <span v-if="!asideCollapsed" class="title">深度神经网络故障分析</span>
       </div>
       <div class="aside-menu">
         <fs-menu mode="vertical" :scroll="false" :menus="asideMenus" :collapse="asideCollapsed" menu-trigger="click" />
