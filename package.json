@@ -37,6 +37,7 @@
     "better-scroll": "^2.5.1",
     "china-division": "^2.6.1",
     "core-js": "^3.32.0",
+    "cors": "^2.8.5",
     "cos-js-sdk-v5": "^1.4.19",
     "dayjs": "^1.11.9",
     "element-plus": "^2.8.3",

@@ -27,7 +27,7 @@ export default ({ command, mode }) => {
     ];
     devServerFs = {
       // 这里配置dev启动时读取的项目根目录
-      // allow: ["../../"]
+      allow: ["../../"]
     };
     console.log("devAlias", devAlias);
   }
@@ -71,15 +71,23 @@ export default ({ command, mode }) => {
         }
       }
     },
+
     server: {
       port: 3001,
-      fs: devServerFs,
+      fs: [".."],
+      cors: true,
       proxy: {
         // with options
         "/api": {
           //配套后端 https://github.com/fast-crud/fs-server-js
-          target: "http://127.0.0.1:7001"
+          target: "http://127.0.0.1:6006",
+          changeOrigin: true
         }
+        // "/func": {
+        //   //配套后端 https://github.com/fast-crud/fs-server-js
+        //   target: "http://127.0.0.1:6006",
+        //   changeOrigin: true
+        // }
       }
     }
   };
