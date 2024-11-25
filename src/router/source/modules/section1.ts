@@ -22,7 +22,7 @@ export const section1 = [
             component: "/section1/func1/index.vue"
           },
           {
-            title: "XXX",
+            title: "test",
             name: "section1-func2",
             path: "/section1/func2",
             component: "/section1/func2/index.vue"
@@ -76,6 +76,18 @@ export const section1 = [
             component: "/section3/func4/index.vue"
           }
         ]
+      },
+      {
+        title: "数据集管理",
+        name: "section4",
+        path: "/section4/func1",
+        component: "/section4/func1/index.vue"
+      },
+      {
+        title: "注意力模型管理",
+        name: "section5",
+        path: "/section5/func1",
+        component: "/section5/func1/index.vue"
       }
     ]
   }

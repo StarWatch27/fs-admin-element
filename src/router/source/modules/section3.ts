@@ -13,6 +13,12 @@ export const section2 = [
         name: "section3-func1",
         path: "/section3/func1",
         component: "/section3/func1/index.vue"
+      },
+      {
+        title: "功能2",
+        name: "section3-func2",
+        path: "/section3/func2",
+        component: "/section3/func2/index.vue"
       }
     ]
   }

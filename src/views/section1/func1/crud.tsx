@@ -17,7 +17,7 @@ export default async function ({ crudExpose, context }: CreateCrudOptionsProps):
       //这里定义两个字段
       columns: {
         name: {
-          title: "姓名1",
+          title: "姓名2",
           type: "text", //字段类型，fs会根据字段类型，生成出一些默认配置
           search: { show: true },
           column: {

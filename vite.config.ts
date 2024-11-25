@@ -78,16 +78,21 @@ export default ({ command, mode }) => {
       cors: true,
       proxy: {
         // with options
-        "/api": {
+        "/dataset": {
+          //配套后端 https://github.com/fast-crud/fs-server-js
+          target: "http://211.71.149.62:6006",
+          changeOrigin: true
+        },
+        "/attentionModel": {
+          //配套后端 https://github.com/fast-crud/fs-server-js
+          target: "http://211.71.149.62:6006",
+          changeOrigin: true
+        },
+        "/func": {
           //配套后端 https://github.com/fast-crud/fs-server-js
           target: "http://127.0.0.1:6006",
           changeOrigin: true
         }
-        // "/func": {
-        //   //配套后端 https://github.com/fast-crud/fs-server-js
-        //   target: "http://127.0.0.1:6006",
-        //   changeOrigin: true
-        // }
       }
     }
   };

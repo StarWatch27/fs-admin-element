@@ -4,20 +4,11 @@
       <el-table-column label="ID" prop="id" width="100" />
       <el-table-column label="注意力模型名称" prop="name" />
       <el-table-column label="绝对路径" prop="abs_path" />
-      <el-table-column label="攻击方法" prop="attack_method">
-        <template #default="scope">
-          <el-select v-model="scope.row.attack_method" placeholder="请选择" size="large">
-            <el-option :key="1" value="deepwordbug" label="deepwordbug"></el-option>
-            <el-option :key="2" value="textfooler" label="textfooler"></el-option>
-            <el-option :key="3" value="pwws" label="pwws"></el-option>
-          </el-select>
-        </template>
-      </el-table-column>
 
       <el-table-column align="right">
         <template #header>
           <p style="display: flex; justify-content: center; gap: 10px">
-            <!--            <el-button type="primary" plain @click="openAddWindow">新增</el-button>-->
+            <el-button type="primary" plain @click="openAddWindow">新增</el-button>
             <el-input v-model="search" size="default" placeholder="请输入注意力模型名称.." />
           </p>
         </template>
@@ -27,7 +18,6 @@
         </template>
       </el-table-column>
     </el-table>
-    <!--  新增窗口  -->
     <el-dialog v-model="dialogFormVisible" title="新增注意力模型" width="500">
       <el-form :model="form" label-width="auto" label-position="top">
         <el-form-item label="注意力模型名称">
@@ -44,7 +34,7 @@
         </div>
       </template>
     </el-dialog>
-    <!--  修改窗口  -->
+
     <el-dialog v-model="editDialogVisible" title="修改" width="500">
       <el-form :model="editForm" label-width="auto" label-position="top">
         <el-form-item label="注意力模型名称">
@@ -73,7 +63,6 @@ interface AttentionModel {
   id: string;
   name: string;
   abs_path: string;
-  attack_method: string;
 }
 
 const search = ref("");
@@ -82,7 +71,6 @@ const editDialogVisible = ref(false);
 const form = ref({});
 const editForm = ref({});
 const prefix = "attentionModel";
-const attackMethod = ref("");
 
 const filterTableData = computed(() =>
   tableData.value.filter((data) => !search.value || data.name.toLowerCase().includes(search.value.toLowerCase()))
@@ -105,9 +93,9 @@ const handleAdd = async () => {
       ...form.value
     })
     .then(async (res) => {
+      await getAllData();
       dialogFormVisible.value = false;
       await ElMessageBox.alert("新增成功");
-      await getAllData();
     });
 };
 
@@ -118,9 +106,9 @@ const handleEdit = async () => {
       ...editForm.value
     })
     .then(async (res) => {
+      await getAllData();
       editDialogVisible.value = false;
       await ElMessageBox.alert("修改成功");
-      await getAllData();
     });
 };
 
