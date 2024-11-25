@@ -6,7 +6,7 @@
       <el-table-column label="绝对路径" prop="abs_path" />
       <el-table-column label="攻击方法" prop="attack_method">
         <template #default="scope">
-          <el-select v-model="scope.row.attack_method" placeholder="请选择" size="large">
+          <el-select v-model="scope.row.attack_method" style="width: 80%" placeholder="请选择" size="large">
             <el-option :key="1" value="deepwordbug" label="deepwordbug"></el-option>
             <el-option :key="2" value="textfooler" label="textfooler"></el-option>
             <el-option :key="3" value="pwws" label="pwws"></el-option>
@@ -18,12 +18,16 @@
         <template #header>
           <p style="display: flex; justify-content: center; gap: 10px">
             <!--            <el-button type="primary" plain @click="openAddWindow">新增</el-button>-->
-            <el-input v-model="search" size="default" placeholder="请输入注意力模型名称.." />
+            <el-input v-model="search" size="default" placeholder="请输入注意力模型名称..">
+              <template #prefix>
+                <el-icon class="el-input__icon"><Search /></el-icon>
+              </template>
+            </el-input>
           </p>
         </template>
         <template #default="scope">
-          <el-button @click="openEditWindow(scope.$index, scope.row)"> 编辑</el-button>
-          <el-button type="danger" plain @click="handleDelete(scope.$index, scope.row)"> 删除</el-button>
+          <el-button style="width: 50%" @click="openEditWindow(scope.$index, scope.row)">生成</el-button>
+          <!--          <el-button type="danger" plain @click="handleDelete(scope.$index, scope.row)"> 删除</el-button>-->
         </template>
       </el-table-column>
     </el-table>
@@ -68,6 +72,7 @@
 import { computed, onMounted, ref } from "vue";
 import axios from "axios";
 import { ElMessageBox } from "element-plus";
+import { Search } from "@element-plus/icons-vue";
 
 interface AttentionModel {
   id: string;
@@ -82,7 +87,12 @@ const editDialogVisible = ref(false);
 const form = ref({});
 const editForm = ref({});
 const prefix = "attentionModel";
-const attackMethod = ref("");
+const loading = ref(true);
+const tableData = ref([]);
+
+onMounted(async () => {
+  await getAllData();
+});
 
 const filterTableData = computed(() =>
   tableData.value.filter((data) => !search.value || data.name.toLowerCase().includes(search.value.toLowerCase()))
@@ -130,11 +140,6 @@ const handleDelete = async (index: number, row: AttentionModel) => {
     await getAllData();
   });
 };
-
-const tableData = ref([]);
-onMounted(async () => {
-  await getAllData();
-});
 
 const getAllData = async () => {
   await axios
