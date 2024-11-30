@@ -20,13 +20,13 @@ export const section1 = [
             name: "section1-func1",
             path: "/section1/func1",
             component: "/section1/func1/index.vue"
-          },
-          {
-            title: "test",
-            name: "section1-func2",
-            path: "/section1/func2",
-            component: "/section1/func2/index.vue"
           }
+          // {
+          //   title: "test",
+          //   name: "section1-func2",
+          //   path: "/section1/func2",
+          //   component: "/section1/func2/index.vue"
+          // }
         ]
       },
       {

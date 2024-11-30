@@ -80,15 +80,16 @@ export default ({ command, mode }) => {
         // with options
         "/dataset": {
           //配套后端 https://github.com/fast-crud/fs-server-js
-          target: "http://211.71.149.62:6006",
+          target: "http://127.0.0.1:6006",
           changeOrigin: true
         },
         "/attentionModel": {
           //配套后端 https://github.com/fast-crud/fs-server-js
-          target: "http://211.71.149.62:6006",
+          // target: "http://127.0.0.1:6006",
+          target: "http://127.0.0.1:6006",
           changeOrigin: true
         },
-        "/func": {
+        "/section1Api": {
           //配套后端 https://github.com/fast-crud/fs-server-js
           target: "http://127.0.0.1:6006",
           changeOrigin: true
