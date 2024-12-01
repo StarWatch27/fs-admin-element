@@ -2,7 +2,7 @@
   <el-container class="fs-framework">
     <el-aside :width="asideCollapsed ? '64px' : '300px'" :trigger="null" collapsible>
       <div class="header-logo">
-        <!--        <img src="/images/logo/rect-black.svg" />-->
+        <img src="/images/logo/rect-black.svg" />
         <!--        <span v-if="!asideCollapsed" class="title">FsAdmin2</span>-->
         <span v-if="!asideCollapsed" class="title">深度神经网络故障分析</span>
       </div>
@@ -58,8 +58,11 @@
         </router-view>
       </el-main>
       <el-footer class="fs-framework-footer">
-        <div>Powered by Greper</div>
-        <div>v{{ version }}</div>
+        <!--        <div>Powered by Greper</div>-->
+        <!--        <div>v{{ version }}</div>-->
+        <!--   hjw 隐藏下方    Powered by Grepe -->
+        <div>By Jiawei</div>
+        <!--        <div>v{{ version }}</div>-->
         <fs-source-link />
       </el-footer>
     </el-container>
@@ -81,8 +84,8 @@ import { ElNotification } from "element-plus";
 export default {
   name: "LayoutFramework",
   // eslint-disable-next-line vue/no-unused-components
-  components: { FsThemeSet, FsMenu, FsLocale, FsSourceLink, FsUserInfo, FsTabs }, // hjw
-  // components: { FsThemeSet, FsMenu, FsLocale, FsUserInfo, FsTabs }, // hjw 去掉右下角“本页源码”
+  // components: { FsThemeSet, FsMenu, FsLocale, FsSourceLink, FsUserInfo, FsTabs }, // hjw
+  components: { FsThemeSet, FsMenu, FsLocale, FsUserInfo, FsTabs }, // hjw 去掉右下角“本页源码”
   setup() {
     const resourceStore = useResourceStore();
     const frameworkMenus = computed(() => {

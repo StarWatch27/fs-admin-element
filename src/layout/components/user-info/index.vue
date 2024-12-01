@@ -1,6 +1,6 @@
 <template>
   <el-dropdown>
-    <div class="fs-user-info">你好，{{ userStore.getUserInfo?.nickName }}</div>
+    <div class="fs-user-info">你好，JW{{ userStore.getUserInfo?.nickName }}</div>
     <template #dropdown>
       <el-dropdown-menu>
         <el-dropdown-item>

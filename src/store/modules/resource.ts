@@ -62,7 +62,7 @@ export const useResourceStore = defineStore({
       this.fixedAsideMenus = findMenus(showMenus, (item) => {
         return item?.meta?.fixedAside === true;
       });
-      this.headerMenus = headerMenus; // hjw隐藏顶部菜单的右侧部分（文档、其他demo、源码、等）
+      // this.headerMenus = headerMenus; // hjw隐藏顶部菜单的右侧部分（文档、其他demo、源码、等）
       this.setAsideMenu();
     },
     setAsideMenu(topMenu?) {
