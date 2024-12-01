@@ -29,21 +29,21 @@ export const section1 = [
           // }
         ]
       },
-      {
-        title: "深度神经网络覆盖测试分析",
-        name: "section2",
-        path: "/section2",
-        redirect: "/section2/func1",
-        // component: "/section2/func1/index.vue",
-        children: [
-          {
-            title: "XXX",
-            name: "section2-func1",
-            path: "/section2/func1",
-            component: "/section2/func1/index.vue"
-          }
-        ]
-      },
+      // {
+      //   title: "深度神经网络覆盖测试分析",
+      //   name: "section2",
+      //   path: "/section2",
+      //   redirect: "/section2/func1",
+      //   // component: "/section2/func1/index.vue",
+      //   children: [
+      //     {
+      //       title: "XXX",
+      //       name: "section2-func1",
+      //       path: "/section2/func1",
+      //       component: "/section2/func1/index.vue"
+      //     }
+      //   ]
+      // },
       {
         title: "深度神经网络故障检测和定位",
         name: "section3",

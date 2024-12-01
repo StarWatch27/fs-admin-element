@@ -20,7 +20,7 @@ export const frameworkResource = [
         name: "index",
         path: "/index",
         // component: "/framework/home/index.vue",
-        component: "/section6/func1/index.vue", // 改为我自己的
+        component: "/section1/func1/index.vue", // 改为我自己的
         meta: {
           fixedAside: true,
           showOnHeader: false,
@@ -28,9 +28,9 @@ export const frameworkResource = [
         }
       },
 
-      ...section1, // 第一章内容
-      ...section2, //第二章内容
-      ...crudResources // crud组件
+      ...section1 // 第一章内容
+      // ...section2 //第二章内容
+      // ...crudResources // crud组件
       // ...sysResources // 用户信息管理
     ]
   }

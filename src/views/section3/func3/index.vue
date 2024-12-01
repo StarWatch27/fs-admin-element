@@ -16,8 +16,8 @@
           </p>
         </template>
         <template #default="scope">
+          <el-button plain @click="genMutantPredsByModelName(scope.$index, scope.row)">分析结果生成</el-button>
           <el-button @click="getMutantPredsByModelName(scope.$index, scope.row)">分析结果展示</el-button>
-          <!--          <el-button plain @click="ElMessageBox.alert('计算集中度')">计算集中度</el-button>-->
           <!--          <el-button plain @click="ElMessageBox.alert('对抗检测')">对抗检测</el-button>-->
         </template>
       </el-table-column>
@@ -63,6 +63,63 @@ const filterTableData = computed(() =>
   tableData.value.filter((data) => !search.value || data.name.toLowerCase().includes(search.value.toLowerCase()))
 );
 
+const genMutantPredsByModelName = async (index: number, row: DLModel) => {
+  console.log("row", row.name, typeof row.name);
+
+  const loading = ElLoading.service({
+    lock: true,
+    text: "处理中...",
+    background: "rgba(0, 0, 0, 0.7)"
+  });
+  setTimeout(() => {
+    loading.close();
+  }, 20000);
+
+  // 发送请求
+  await axios
+    .post(`/section3Api/genMutantPredsByModelName`, {
+      body: {
+        name: row.name
+      }
+    })
+    .then(async (res) => {
+      loading.close();
+      let msg = res.data.result;
+      if (msg.includes("start")) {
+        await ElMessageBox.alert("开始生成！", "通知", {
+          config: undefined,
+          confirmButtonText: "确认",
+          type: "success"
+        });
+      } else if (msg.includes("exists")) {
+        await ElMessageBox.alert(`已存在故障预测结果文件！\n${res.data.data}`, "警告", {
+          config: undefined,
+          confirmButtonText: "确认",
+          type: "warning"
+        });
+      } else if (msg.includes("running")) {
+        await ElMessageBox.alert("正在生成中！", "警告", {
+          config: undefined,
+          confirmButtonText: "确认",
+          type: "warning"
+        });
+      } else if (msg.includes("fail")) {
+        await ElMessageBox.alert("未检测到故障特征文件，请先生成！", "警告", {
+          config: undefined,
+          confirmButtonText: "确认",
+          type: "warning"
+        });
+      } else {
+        await ElMessageBox.alert("未知错误！", "警告", {
+          config: undefined,
+          confirmButtonText: "确认",
+          type: "warning"
+        });
+      }
+      await getAllData();
+    });
+};
+
 const getMutantPredsByModelName = async (index: number, row: DLModel) => {
   console.log("row", row.name, typeof row.name);
 
@@ -92,11 +149,6 @@ const getMutantPredsByModelName = async (index: number, row: DLModel) => {
         });
         return;
       }
-      let msg = "";
-      for (let i = 0; i < res.data.result.length; i++) {
-        msg += res.data.result[i].vec_ast + "\n";
-      }
-      console.log("msg", msg);
       gridData.value = res.data.result;
       dialogTableVisible.value = true;
       await getAllData();
