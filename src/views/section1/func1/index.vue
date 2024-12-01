@@ -35,7 +35,7 @@
         <template #default="scope">
           <el-button @click="genAdvDataset(scope.$index, scope.row)">生成</el-button>
           <el-button plain @click="genFocus(scope.$index, scope.row)">计算集中度</el-button>
-          <el-button plain @click="ElMessageBox.alert('对抗检测')">对抗检测</el-button>
+          <el-button plain @click="advDetect(scope.$index, scope.row)">对抗检测</el-button>
         </template>
       </el-table-column>
     </el-table>
@@ -110,7 +110,7 @@ const genAdvDataset = async (index: number, row: AttackRecipe) => {
           type: "success"
         });
       } else if (msg.includes("exists")) {
-        await ElMessageBox.alert("已存在攻击样本！", "警告", {
+        await ElMessageBox.alert(`已存在攻击样本！\n ${res.data.data}`, "警告", {
           config: undefined,
           confirmButtonText: "确认",
           type: "warning"
@@ -177,7 +177,7 @@ const genFocus = async (index: number, row: AttackRecipe) => {
           type: "success"
         });
       } else if (msg.includes("exists")) {
-        await ElMessageBox.alert("已存在集中度序列！", "警告", {
+        await ElMessageBox.alert(`已存在集中度序列！\n${res.data.data}`, "警告", {
           config: undefined,
           confirmButtonText: "确认",
           type: "warning"
@@ -203,6 +203,74 @@ const genFocus = async (index: number, row: AttackRecipe) => {
       }
       // await ElMessageBox.alert("生成成功");
       await getAllData();
+    });
+};
+
+const advDetect = async (index: number, row: AttackRecipe) => {
+  console.log("row", row);
+  // 检查是否选择
+  if (row.dataset == "" || row.dataset == null || row.attack_method == "" || row.attack_method == null) {
+    await ElMessage.error("请选择 攻击方法 和 数据集！");
+    return;
+  }
+
+  // 屏幕变灰
+  const loading = ElLoading.service({
+    lock: true,
+    text: "处理中...",
+    background: "rgba(0, 0, 0, 0.7)"
+  });
+  setTimeout(() => {
+    loading.close();
+  }, 20000);
+
+  // 发送请求
+  await axios
+    .post(`/section1Api/advDetect`, {
+      body: {
+        model: row.name.toLowerCase(),
+        dataset: row.dataset.toLowerCase(),
+        atk_method: row.attack_method.toLowerCase()
+      }
+    })
+    .then(async (res) => {
+      loading.close();
+      let msg = res.data.result;
+      console.log("msg:", msg);
+      if (msg.includes("start")) {
+        await ElMessageBox.alert("开始执行！", "通知", {
+          config: undefined,
+          confirmButtonText: "确认",
+          type: "success"
+        });
+      } else if (msg.includes("exists")) {
+        let msg = `已存在训练结果！\n ${res.data.data}`;
+        await ElMessageBox.alert(msg, "警告", {
+          config: undefined,
+          confirmButtonText: "确认",
+          type: "warning"
+        });
+      } else if (msg.includes("running")) {
+        await ElMessageBox.alert("正在执行中！", "警告", {
+          config: undefined,
+          confirmButtonText: "确认",
+          type: "warning"
+        });
+      } else if (msg.includes("fail")) {
+        await ElMessageBox.alert("执行失败！", "警告", {
+          config: undefined,
+          confirmButtonText: "确认",
+          type: "warning"
+        });
+      } else {
+        await ElMessageBox.alert("未知错误！", "警告", {
+          config: undefined,
+          confirmButtonText: "确认",
+          type: "warning"
+        });
+      }
+      // await ElMessageBox.alert("生成成功");
+      // await getAllData();
     });
 };
 
