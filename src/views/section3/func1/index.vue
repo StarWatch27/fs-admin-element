@@ -16,7 +16,7 @@
           </p>
         </template>
         <template #default="scope">
-          <el-button @click="getMutantRunDataByModelName(scope.$index, scope.row)">展示</el-button>
+          <el-button @click="getMutantRunDataByModelName(scope.$index, scope.row)">故障特征展示</el-button>
           <!--          <el-button plain @click="ElMessageBox.alert('计算集中度')">计算集中度</el-button>-->
           <!--          <el-button plain @click="ElMessageBox.alert('对抗检测')">对抗检测</el-button>-->
         </template>
@@ -25,6 +25,7 @@
 
     <el-dialog v-model="dialogTableVisible" title="故障特征展示" style="width: 70%">
       <el-table :data="gridData" height="400">
+        <el-table-column property="mutant_name" label="变异名称" width="auto" show-overflow-tooltip />
         <el-table-column property="vec_ast" label="AST特征" width="auto" show-overflow-tooltip />
         <el-table-column property="vsc_ecfg" label="ECFG特征" width="auto" show-overflow-tooltip />
         <el-table-column property="vec_spm" label="动&静特征" width="auto" show-overflow-tooltip />
@@ -77,29 +78,35 @@ const getMutantRunDataByModelName = async (index: number, row: DLModel) => {
 
   // 发送请求
   await axios
-    .post(`/section2Api/getDataShapeByModelName`, {
+    .post(`/section3Api/getMutantRunDataByModelName`, {
       body: {
         name: row.name
       }
     })
     .then(async (res) => {
       loading.close();
+      if (res.data.flag == "fail") {
+        ElMessageBox.alert("未检测到故障特征文件，请先生成！", "警告", {
+          config: undefined,
+          confirmButtonText: "确认",
+          type: "error"
+        });
+        return;
+      }
+      let msg = "";
+      for (let i = 0; i < res.data.result.length; i++) {
+        msg += res.data.result[i].vec_ast + "\n";
+      }
+      console.log("msg", msg);
       gridData.value = res.data.result;
       dialogTableVisible.value = true;
-      // await ElMessageBox.alert("数据展示！\n" + msg, "通知", {
-      //   config: undefined,
-      //   confirmButtonText: "确认",
-      //   type: "success"
-      // });
-
-      // await ElMessageBox.alert("生成成功");
       await getAllData();
     });
 };
 
 const getAllData = async () => {
   await axios
-    .get(`/section2Api/getAllModels`)
+    .get(`/section3Api/getAllModels`)
     .then((res) => {
       console.log("data", res);
       tableData.value = res.data;

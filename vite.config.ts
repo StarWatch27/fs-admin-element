@@ -94,7 +94,7 @@ export default ({ command, mode }) => {
           target: "http://127.0.0.1:6006",
           changeOrigin: true
         },
-        "/section2Api": {
+        "/section3Api": {
           //配套后端 https://github.com/fast-crud/fs-server-js
           target: "http://127.0.0.1:6006",
           changeOrigin: true

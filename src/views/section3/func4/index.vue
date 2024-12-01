@@ -56,7 +56,7 @@ const filterTableData = computed(() =>
 
 const getAllData = async () => {
   await axios
-    .get(`/section2Api/getAllModels`)
+    .get(`/section3Api/getAllModels`)
     .then((res) => {
       console.log("data", res);
       tableData.value = res.data;
