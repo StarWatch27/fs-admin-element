@@ -33,12 +33,21 @@
           </p>
         </template>
         <template #default="scope">
-          <el-button @click="genAdvDataset(scope.$index, scope.row)">生成</el-button>
-          <el-button plain @click="genFocus(scope.$index, scope.row)">计算集中度</el-button>
-          <el-button plain @click="advDetect(scope.$index, scope.row)">对抗检测</el-button>
+          <el-button @click="genAdvDataset(scope.$index, scope.row)">对抗样本生成</el-button>
+          <el-button plain @click="genFocus(scope.$index, scope.row)">计算对抗样本集中度</el-button>
+          <el-button plain @click="advDetect(scope.$index, scope.row)">对抗样本检测</el-button>
         </template>
       </el-table-column>
     </el-table>
+
+    <el-dialog v-model="dialogTableVisible" title="对抗样本检测展示" style="width: 70%">
+      <el-table :data="gridData" height="400">
+        <el-table-column property="xx" label="集中度序列" width="auto" show-overflow-tooltip />
+        <el-table-column property="yy" label="故障标签" width="auto" show-overflow-tooltip />
+        <el-table-column property="yy_pred" label="预测标签" width="auto" show-overflow-tooltip />
+        <el-table-column property="check" label="是否预测成功" width="auto" show-overflow-tooltip />
+      </el-table>
+    </el-dialog>
   </div>
 </template>
 
@@ -62,6 +71,8 @@ const prefix = "attentionModel";
 const loading = ref(true);
 const tableData = ref([]);
 const datasets = ref({});
+const dialogTableVisible = ref(false);
+const gridData = ref([]);
 
 onMounted(async () => {
   await getAllData();
@@ -135,7 +146,7 @@ const genAdvDataset = async (index: number, row: AttackRecipe) => {
         });
       }
       // await ElMessageBox.alert("生成成功");
-      await getAllData();
+      // await getAllData();
     });
 };
 
@@ -202,7 +213,7 @@ const genFocus = async (index: number, row: AttackRecipe) => {
         });
       }
       // await ElMessageBox.alert("生成成功");
-      await getAllData();
+      // await getAllData();
     });
 };
 
@@ -245,11 +256,13 @@ const advDetect = async (index: number, row: AttackRecipe) => {
         });
       } else if (msg.includes("exists")) {
         let msg = `已存在训练结果！\n ${res.data.data}`;
-        await ElMessageBox.alert(msg, "警告", {
-          config: undefined,
-          confirmButtonText: "确认",
-          type: "warning"
-        });
+        // await ElMessageBox.alert(msg, "警告", {
+        //   config: undefined,
+        //   confirmButtonText: "确认",
+        //   type: "warning"
+        // });
+        gridData.value = res.data.data;
+        dialogTableVisible.value = true;
       } else if (msg.includes("running")) {
         await ElMessageBox.alert("正在执行中！", "警告", {
           config: undefined,

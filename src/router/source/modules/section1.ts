@@ -1,6 +1,6 @@
 export const section1 = [
   {
-    title: "深度神经网络XXX",
+    title: "深度神经网络-故障分析",
     name: "section1",
     path: "/section1",
     redirect: "/section1/func1",
